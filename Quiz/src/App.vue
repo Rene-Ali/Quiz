@@ -1,15 +1,24 @@
+<script setup>
+import q from "./data/quizes.json"
+import {ref} from "vue";
+
+const quizes = ref(q);
+const search=ref("");
+
+</script>
+
 <template>
   <div class="container">
     <header>
       <h1>Quizes</h1>
-      <input type="text" placeholder="Search...">
+      <input v-model.trim="search" type="text" placeholder="Search...">
     </header>
     <div class="options-container">
-      <div class="card">
-        <img src="https://img.freepik.com/free-vector/chalkboard-with-math-elements_1411-88.jpg" alt="">
+      <div v-for="quiz in quizes" :key="quiz.id" class="card">
+        <img :src="quiz.img" alt="">
         <div class="card-text">
-          <h2>Math</h2>
-          <p>15 questions</p>
+          <h2>{{ quiz.name }}</h2>
+          <p>{{quiz.questions.length}} questions</p>
         </div>
       </div>
     </div>
@@ -19,7 +28,7 @@
 <style scoped>
 .container {
   max-width: 10000px;
-  margin-top: 0 auto;
+  margin-top: auto;
 }
 
 header {
