@@ -14,5 +14,6 @@ import QuizesView from "@/views/QuizesView.vue";
 .container {
   max-width: 10000px;
   margin-top: auto;
+  padding: 0 120px;
 }
 </style>
