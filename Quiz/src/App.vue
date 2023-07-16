@@ -1,35 +1,12 @@
 <script setup>
-import q from "./data/quizes.json"
-import {ref, watch} from "vue";
-import Card from "@/components/Card.vue";
-
-const quizes = ref(q);
-const search = ref("");
-
-
-watch(search, () => {
-      quizes.value = q.filter(quizes => quizes.name.toLowerCase().includes(search.value.toLowerCase()))
-    }
-)
-
+import {RouterView} from "vue-router";
+import QuizesView from "@/views/QuizesView.vue";
 </script>
-
 <template>
   <div class="container">
-    <header>
-      <h1>Quizes</h1>
-      <input v-model.trim="search" type="text" placeholder="Search...">
-    </header>
-    <div class="options-container">
-      <Card v-for="quiz in quizes" :key="quiz.id" :quiz="quiz"/>
-<!--      <div v-for="quiz in quizes" :key="quiz.id" class="card">-->
-<!--        <img :src="quiz.img" alt="">-->
-<!--        <div class="card-text">-->
-<!--          <h2>{{ quiz.name }}</h2>-->
-<!--          <p>{{ quiz.questions.length }} questions</p>-->
-<!--        </div>-->
-<!--      </div>-->
-    </div>
+    <RouterView/>
+
+
   </div>
 </template>
 
@@ -38,32 +15,4 @@ watch(search, () => {
   max-width: 10000px;
   margin-top: auto;
 }
-
-header {
-  margin-bottom: 10px;
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-}
-
-header h1 {
-  font-weight: bold;
-  margin-right: 30px;
-}
-
-header input {
-  border: none;
-  background-color: rgb(128, 128, 128, 0.1);
-  padding: 10px;
-  border-radius: 5px;
-}
-
-/*Options container*/
-.options-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 40px;
-}
-
-
 </style>

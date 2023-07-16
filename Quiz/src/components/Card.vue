@@ -1,22 +1,30 @@
 <script setup>
 import {defineProps} from "vue";
+import {useRoute, useRouter} from "vue-router";
 
+
+const router = useRouter();
 const {quiz} = defineProps(["quiz"]);
+
+const navigateToQuiz= () => {
+  router.push(`/quiz/${quiz.id}`)
+}
 
 </script>
 
 <template>
-  <div class="card">
+  <div class="card" @click="navigateToQuiz">
     <img
-        src="quiz.img"
+        :src="quiz.img"
         alt="">
     <div class="card-text">
       <h2>{{ quiz.name }}</h2>
-      <p>{{ quiz.questions.length }}</p>
+      <p>{{ quiz.questions.length }} questions </p>
     </div>
   </div>
 </template>
-
+// https://www.youtube.com/watch?v=I_xLMmNeLDY&t=9914s
+//3:31:13
 <style scoped>
 .card {
   width: 310px;
